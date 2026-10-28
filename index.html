@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISI TAHSIN: Ekspedisi Rahasia Makharijul Huruf</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Amiri (Arabic) & Plus Jakarta Sans / Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rose-gold': '#B76E79',
+                        'dusty-pink': '#DCAEBA',
+                        'blush-pink': '#F4E0E5',
+                        'soft-cream': '#FDFBF7',
+                        'pearl-white': '#FFFFFF',
+                        'deep-rose': '#8B3A4C',
+                        'gold-accent': '#D4AF37',
+                        'dark-plum': '#2A0812'
+                    },
+                    fontFamily: {
+                        'sans': ['"Plus Jakarta Sans"', 'sans-serif'],
+                        'arabic': ['Amiri', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #2A0812 0%, #4A1525 35%, #8B3A4C 70%, #B76E79 100%);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            color: #2A0812;
+            user-select: none;
+        }
+
+        /* Pattern overlay */
+        .islamic-pattern {
+            background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#D4AF37 0.75px, #FDFBF7 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            opacity: 0.05;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4E0E5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #B76E79;
+            border-radius: 4px;
+        }
+
+        /* Glassmorphism effects */
+        .glass-card {
+            background: rgba(253, 251, 247, 0.93);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .gold-border {
+            border: 2px solid #D4AF37;
+        }
+
+        .gold-gradient-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+        .gold-gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .pink-gradient-btn {
+            background: linear-gradient(135deg, #8B3A4C 0%, #B76E79 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 58, 76, 0.4);
+            transition: all 0.3s ease;
+        }
+        .pink-gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 58, 76, 0.6);
+        }
+
+        /* Custom Drag and Drop styling */
+        .draggable-item {
+            cursor: grab;
+            transition: all 0.2s ease;
+        }
+        .draggable-item:active {
+            cursor: grabbing;
+            transform: scale(0.98);
+        }
+        .drop-zone.hovered {
+            background-color: rgba(218, 174, 186, 0.4) !important;
+            border-color: #8B3A4C !important;
+        }
+        .selected-touch {
+            ring: 4px solid #D4AF37;
+            transform: scale(1.02);
+        }
+
+        /* Certificate Print Styling */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-certificate, #printable-certificate * {
+                visibility: visible;
+            }
+            #printable-certificate {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 20px;
+                background: white !important;
+                color: black !important;
+                box-shadow: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col justify-between items-center p-2 md:p-6 overflow-x-hidden">
+    <div class="fixed inset-0 islamic-pattern pointer-events-none"></div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div id="app" class="w-full max-w-5xl my-auto z-10">
+
+        <!-- 1. LANDING & IDENTITAS SCREEN -->
+        <div id="screen-welcome" class="glass-card rounded-2xl p-6 md:p-10 my-4 border-2 border-gold-accent/40 text-center relative overflow-hidden transition-all duration-500">
+            <!-- Header Ornament -->
+            <div class="flex justify-center items-center gap-3 mb-4">
+                <i class="fa-solid font-2x fa-star-and-crescent text-gold-accent text-2xl"></i>
+                <span class="text-xs uppercase tracking-widest text-deep-rose font-bold">SMA Ma'had Al Bayyinah</span>
+                <i class="fa-solid font-2x fa-star-and-crescent text-gold-accent text-2xl"></i>
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-extrabold text-dark-plum mb-2 tracking-tight">
+                MISI TAHSIN
+            </h1>
+            <h2 class="text-lg md:text-xl font-bold text-deep-rose mb-6">
+                Ekspedisi Rahasia Makharijul Huruf & Sifat-Sifatnya
+            </h2>
+
+            <!-- Ummu Widaad Character Banner -->
+            <div class="bg-blush-pink/60 rounded-xl p-4 md:p-6 mb-6 border border-dusty-pink flex flex-col md:flex-row items-center gap-5 text-left">
+                <!-- Avatar SVG -->
+                <div class="relative flex-shrink-0">
+                    <div class="w-28 h-28 md:w-32 md:w-32 rounded-full bg-gradient-to-br from-dusty-pink to-deep-rose p-1 border-2 border-gold-accent shadow-md">
+                        <div class="w-full h-full rounded-full bg-dark-plum flex items-center justify-center overflow-hidden relative">
+                            <!-- SVG Character Representation: Muslimah in Dusty Pink Hijab & Niqab -->
+                            <svg viewBox="0 0 100 100" class="w-full h-full">
+                                <rect width="100" height="100" fill="#2A0812"/>
+                                <!-- Hijab background -->
+                                <path d="M 15 100 Q 10 30 50 15 Q 90 30 85 100 Z" fill="#DCAEBA"/>
+                                <!-- Niqab & Face Area -->
+                                <ellipse cx="50" cy="45" rx="20" ry="15" fill="#1A040B"/>
+                                <!-- Eyes Area -->
+                                <ellipse cx="50" cy="42" rx="16" ry="5" fill="#EAD5C3"/>
+                                <!-- Eyes -->
+                                <circle cx="43" cy="42" r="2" fill="#2A0812"/>
+                                <circle cx="57" cy="42" r="2" fill="#2A0812"/>
+                                <path d="M 40 39 Q 43 37 46 39" stroke="#2A0812" stroke-width="0.8" fill="none"/>
+                                <path d="M 54 39 Q 57 37 60 39" stroke="#2A0812" stroke-width="0.8" fill="none"/>
+                                <!-- Niqab cloth cover -->
+                                <path d="M 30 45 Q 50 48 70 45 L 75 90 Q 50 95 25 90 Z" fill="#110207"/>
+                                <!-- Gold Accents on Hijab -->
+                                <path d="M 22 70 Q 50 80 78 70" stroke="#D4AF37" stroke-width="1.5" fill="none"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-gold-accent text-dark-plum text-[10px] font-bold px-2 py-0.5 rounded-full border border-white shadow">
+                        Pemandu
+                    </span>
+                </div>
+
+                <div class="flex-1">
+                    <p class="font-arabic text-xl text-right text-deep-rose mb-1 font-bold">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                    <p class="text-sm md:text-base text-dark-plum font-medium italic mb-2">
+                        “Assalamu’alaikum, wahai penuntut ilmu!”
+                    </p>
+                    <p class="text-xs md:text-sm text-gray-700 leading-relaxed">
+                        “Aku <strong>Ummu Widaad</strong>. Hari ini, anti akan menempuh ekspedisi untuk menguji ketelitian anti dalam memahami makharijul huruf dan sifat-sifatnya. Jangan terburu-buru. Satu kesalahan kecil dalam memahami tempat keluar dan sifat huruf bisa mengubah kualitas bacaanmu. Apakah anti siap menaklukkan lima gerbang ilmu tahsin?”
+                    </p>
+                </div>
+            </div>
+
+            <!-- Form Identitas -->
+            <form id="form-identity" onsubmit="startGame(event)" class="max-w-md mx-auto bg-white p-5 rounded-xl border border-dusty-pink shadow-sm space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-bold text-deep-rose mb-1 uppercase tracking-wider">Nama Lengkap Santriwati <span class="text-red-500">*</span></label>
+                    <input type="text" id="player-name" required placeholder="Masukkan nama lengkap..." class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-deep-rose text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-deep-rose mb-1 uppercase tracking-wider">Kelas / Tingkat <span class="text-red-500">*</span></label>
+                    <select id="player-class" required class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-deep-rose text-sm">
+                        <option value="" disabled selected>-- Pilih Kelas --</option>
+                        <option value="X SMA">X SMA</option>
+                        <option value="XI SMA">XI SMA</option>
+                        <option value="XII SMA">XII SMA</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full gold-gradient-btn py-3 rounded-xl font-bold text-base uppercase tracking-wider mt-2 flex items-center justify-center gap-2">
+                    <span>Mulai Ekspedisi</span>
+                    <i class="fa-solid fa-compass"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- 2. MAP & GATE SELECTOR SCREEN -->
+        <div id="screen-map" class="hidden glass-card rounded-2xl p-6 md:p-8 my-4 border-2 border-gold-accent/40 text-center">
+            <!-- Top Bar Player Info -->
+            <div class="flex flex-wrap justify-between items-center bg-blush-pink/80 rounded-xl p-3 px-5 mb-6 border border-dusty-pink gap-2">
+                <div class="flex items-center gap-3 text-left">
+                    <div class="w-10 h-10 rounded-full bg-deep-rose text-white flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <div>
+                        <div id="map-player-name" class="font-bold text-dark-plum text-sm md:text-base">Santriwati</div>
+                        <div id="map-player-class" class="text-xs text-deep-rose font-semibold">Kelas</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-center">
+                        <span class="block text-[10px] uppercase font-bold text-gray-500">Total Skor</span>
+                        <span id="map-total-score" class="font-extrabold text-lg text-deep-rose">0</span>
+                    </div>
+                    <button onclick="confirmRestart()" class="text-xs bg-red-100 hover:bg-red-200 text-red-700 font-bold px-3 py-2 rounded-lg border border-red-300 transition">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Reset Progres
+                    </button>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-extrabold text-dark-plum mb-1">PETA EKSPEDISI TAHSIN</h2>
+            <p class="text-xs md:text-sm text-gray-600 mb-6">Taklukkan setiap gerbang secara berurutan. Syarat kelulusan gerbang: Minimal 75% Skor.</p>
+
+            <!-- Gates Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+                <!-- Gate 1 -->
+                <div id="gate-card-1" class="relative rounded-xl p-4 border-2 border-gold-accent bg-white shadow-md transition duration-300 hover:shadow-lg flex flex-col justify-between h-56">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold-accent text-dark-plum text-[10px] font-extrabold px-3 py-0.5 rounded-full shadow">
+                        GERBANG I
+                    </div>
+                    <div class="mt-3 text-3xl text-deep-rose"><i class="fa-solid fa-torah"></i></div>
+                    <div>
+                        <h3 class="font-bold text-sm text-dark-plum leading-tight mb-1">Makharijul Huruf</h3>
+                        <p class="text-[11px] text-gray-500 leading-snug">17 Makhraj Khusus & 5 Umum</p>
+                    </div>
+                    <div id="gate-status-1" class="text-xs font-bold py-1 px-2 rounded-md bg-emerald-100 text-emerald-800">
+                        Terbuka
+                    </div>
+                    <button id="gate-btn-1" onclick="startLevel(1)" class="w-full pink-gradient-btn py-1.5 rounded-lg text-xs font-bold shadow">
+                        Masuk Gerbang
+                    </button>
+                </div>
+
+                <!-- Gate 2 -->
+                <div id="gate-card-2" class="relative rounded-xl p-4 border border-gray-300 bg-gray-50 opacity-75 shadow-sm flex flex-col justify-between h-56">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-400 text-white text-[10px] font-extrabold px-3 py-0.5 rounded-full shadow">
+                        GERBANG II
+                    </div>
+                    <div class="mt-3 text-3xl text-gray-400"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div>
+                        <h3 class="font-bold text-sm text-gray-700 leading-tight mb-1">Sifat Memiliki Lawan</h3>
+                        <p class="text-[11px] text-gray-500 leading-snug">Hams, Jahr, Syiddah, dll.</p>
+                    </div>
+                    <div id="gate-status-2" class="text-xs font-bold py-1 px-2 rounded-md bg-gray-200 text-gray-600">
+                        <i class="fa-solid fa-lock text-[10px]"></i> Terkunci
+                    </div>
+                    <button id="gate-btn-2" disabled onclick="startLevel(2)" class="w-full bg-gray-300 text-gray-500 py-1.5 rounded-lg text-xs font-bold cursor-not-allowed">
+                        Terkunci
+                    </button>
+                </div>
+
+                <!-- Gate 3 -->
+                <div id="gate-card-3" class="relative rounded-xl p-4 border border-gray-300 bg-gray-50 opacity-75 shadow-sm flex flex-col justify-between h-56">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-400 text-white text-[10px] font-extrabold px-3 py-0.5 rounded-full shadow">
+                        GERBANG III
+                    </div>
+                    <div class="mt-3 text-3xl text-gray-400"><i class="fa-solid fa-gem"></i></div>
+                    <div>
+                        <h3 class="font-bold text-sm text-gray-700 leading-tight mb-1">Sifat Tanpa Lawan</h3>
+                        <p class="text-[11px] text-gray-500 leading-snug">Qalqalah, Shafir, Tafasysyi, dll.</p>
+                    </div>
+                    <div id="gate-status-3" class="text-xs font-bold py-1 px-2 rounded-md bg-gray-200 text-gray-600">
+                        <i class="fa-solid fa-lock text-[10px]"></i> Terkunci
+                    </div>
+                    <button id="gate-btn-3" disabled onclick="startLevel(3)" class="w-full bg-gray-300 text-gray-500 py-1.5 rounded-lg text-xs font-bold cursor-not-allowed">
+                        Terkunci
+                    </button>
+                </div>
+
+                <!-- Gate 4 -->
+                <div id="gate-card-4" class="relative rounded-xl p-4 border border-gray-300 bg-gray-50 opacity-75 shadow-sm flex flex-col justify-between h-56">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-400 text-white text-[10px] font-extrabold px-3 py-0.5 rounded-full shadow">
+                        GERBANG IV
+                    </div>
+                    <div class="mt-3 text-3xl text-gray-400"><i class="fa-solid fa-eye-slash"></i></div>
+                    <div>
+                        <h3 class="font-bold text-sm text-gray-700 leading-tight mb-1">Sifat Khafa & Analisis</h3>
+                        <p class="text-[11px] text-gray-500 leading-snug">Karakter & Samar Suara</p>
+                    </div>
+                    <div id="gate-status-4" class="text-xs font-bold py-1 px-2 rounded-md bg-gray-200 text-gray-600">
+                        <i class="fa-solid fa-lock text-[10px]"></i> Terkunci
+                    </div>
+                    <button id="gate-btn-4" disabled onclick="startLevel(4)" class="w-full bg-gray-300 text-gray-500 py-1.5 rounded-lg text-xs font-bold cursor-not-allowed">
+                        Terkunci
+                    </button>
+                </div>
+
+                <!-- Gate 5 -->
+                <div id="gate-card-5" class="relative rounded-xl p-4 border border-gray-300 bg-gray-50 opacity-75 shadow-sm flex flex-col justify-between h-56">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gray-400 text-white text-[10px] font-extrabold px-3 py-0.5 rounded-full shadow">
+                        GERBANG V
+                    </div>
+                    <div class="mt-3 text-3xl text-gray-400"><i class="fa-solid fa-crown"></i></div>
+                    <div>
+                        <h3 class="font-bold text-sm text-gray-700 leading-tight mb-1">Master Tahsin</h3>
+                        <p class="text-[11px] text-gray-500 leading-snug">Ujian Integratif Komprehensif</p>
+                    </div>
+                    <div id="gate-status-5" class="text-xs font-bold py-1 px-2 rounded-md bg-gray-200 text-gray-600">
+                        <i class="fa-solid fa-lock text-[10px]"></i> Terkunci
+                    </div>
+                    <button id="gate-btn-5" disabled onclick="startLevel(5)" class="w-full bg-gray-300 text-gray-500 py-1.5 rounded-lg text-xs font-bold cursor-not-allowed">
+                        Terkunci
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ummu Widaad Dialog Note -->
+            <div class="bg-blush-pink/40 rounded-xl p-4 border border-dusty-pink text-left flex items-center gap-3">
+                <i class="fa-solid fa-scroll text-deep-rose text-2xl"></i>
+                <p class="text-xs text-dark-plum italic leading-relaxed">
+                    “Setiap gerbang menyimpan ujian tajwid berbobot tinggi. Persiapkan pemahaman anti. Nilai kelulusan gerbang adalah 75%. Semangat fiisabilillah!”
+                </p>
+            </div>
+        </div>
+
+        <!-- 3. GAMEPLAY SCREEN (LEVELS) -->
+        <div id="screen-game" class="hidden glass-card rounded-2xl p-4 md:p-6 my-2 border-2 border-gold-accent/40">
+            <!-- Header Level Bar -->
+            <div class="flex flex-wrap justify-between items-center bg-blush-pink rounded-xl p-3 mb-4 border border-dusty-pink gap-2">
+                <div>
+                    <span id="game-level-title" class="text-xs font-bold uppercase tracking-wider text-deep-rose">GERBANG I</span>
+                    <h2 id="game-level-subtitle" class="text-base md:text-lg font-extrabold text-dark-plum">Makharijul Huruf</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="bg-white px-3 py-1.5 rounded-lg border border-gold-accent font-mono font-bold text-deep-rose text-sm flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="timer-display">04:00</span>
+                    </div>
+                    <div class="bg-white px-3 py-1.5 rounded-lg border border-dusty-pink font-bold text-dark-plum text-xs flex items-center gap-1 shadow-sm">
+                        <span>Soal:</span>
+                        <span id="question-progress-text" class="text-deep-rose">1/10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ummu Widaad Mini Guidance Header -->
+            <div class="bg-white/80 rounded-lg p-3 mb-4 border-l-4 border-deep-rose flex items-center gap-3 shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-dark-plum text-gold-accent flex-shrink-0 flex items-center justify-center font-bold text-sm">
+                    UW
+                </div>
+                <div id="ummu-guidance-text" class="text-xs text-dark-plum italic leading-snug">
+                    "Bacalah soal dengan cermat dan perhatikan perbedaan mendasar pada tiap pilihan."
+                </div>
+                <button onclick="useHint()" id="hint-btn" class="ml-auto flex-shrink-0 text-xs bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-bold px-2.5 py-1.5 rounded-lg flex items-center gap-1 transition">
+                    <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                    <span>Petunjuk (<span id="hint-count">3</span>)</span>
+                </button>
+            </div>
+
+            <!-- QUESTION CONTENT CONTAINER -->
+            <div id="question-container" class="min-h-[320px] bg-white rounded-xl p-4 md:p-6 border border-dusty-pink shadow-inner mb-4">
+                <!-- Dynamic HTML Content (Multiple Choice / Matching / Card Ordering) will load here -->
+            </div>
+
+            <!-- EXPLANATION BOX (Hidden until locked/submitted) -->
+            <div id="explanation-box" class="hidden mb-4 bg-amber-50 border-2 border-amber-300 rounded-xl p-4 text-xs md:text-sm text-gray-800 leading-relaxed shadow-sm">
+                <div class="flex items-center gap-2 font-bold text-amber-900 mb-1">
+                    <i class="fa-solid fa-circle-info text-amber-600"></i>
+                    <span>PEMBAHASAN & VERIFIKASI TAHSIN:</span>
+                </div>
+                <div id="explanation-text" class="text-gray-700"></div>
+            </div>
+
+            <!-- BOTTOM NAVIGATION BAR -->
+            <div class="flex justify-between items-center pt-2">
+                <button onclick="confirmExitLevel()" class="text-xs bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold px-4 py-2.5 rounded-lg border border-gray-300 transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke Peta
+                </button>
+                <button id="action-btn" onclick="submitAnswer()" class="gold-gradient-btn px-6 py-2.5 rounded-xl font-bold text-sm uppercase tracking-wider flex items-center gap-2 shadow-md">
+                    <span>Kunci Jawaban</span>
+                    <i class="fa-solid fa-lock"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 4. LEVEL RESULT EVALUATION MODAL -->
+        <div id="modal-result" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="glass-card max-w-lg w-full rounded-2xl p-6 border-2 border-gold-accent text-center relative animate-fade-in">
+                <div id="result-icon-container" class="w-16 h-16 rounded-full mx-auto flex items-center justify-center text-3xl mb-3 shadow-md">
+                    <!-- Icon loaded via JS -->
+                </div>
+                <h3 id="result-title" class="text-xl font-extrabold text-dark-plum mb-1">Hasil Evaluasi Gerbang</h3>
+                <p id="result-subtitle" class="text-xs text-gray-600 mb-4">Ringkasan Pencapaian Santriwati</p>
+
+                <!-- Score Details -->
+                <div class="grid grid-cols-2 gap-3 mb-4 bg-blush-pink/50 p-4 rounded-xl border border-dusty-pink text-left">
+                    <div>
+                        <span class="block text-[10px] uppercase font-bold text-gray-500">Skor Level</span>
+                        <span id="res-score-text" class="text-xl font-extrabold text-deep-rose">80%</span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase font-bold text-gray-500">Status Gerbang</span>
+                        <span id="res-status-badge" class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-emerald-100 text-emerald-800">LULUS</span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase font-bold text-gray-500">Jawaban Benar</span>
+                        <span id="res-correct-text" class="text-sm font-bold text-dark-plum">8 / 10</span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase font-bold text-gray-500">Waktu Terpakai</span>
+                        <span id="res-time-text" class="text-sm font-bold text-dark-plum">02:15</span>
+                    </div>
+                </div>
+
+                <!-- Ummu Widaad Evaluation Message -->
+                <div class="bg-white p-3 rounded-lg border border-dusty-pink text-xs text-left italic text-gray-700 mb-5 flex gap-3 items-start">
+                    <div class="w-8 h-8 rounded-full bg-deep-rose text-white flex-shrink-0 flex items-center justify-center text-xs font-bold">UW</div>
+                    <p id="res-ummu-message">"Masya Allah, ketelitian anti sangat luar biasa. Lanjutkan ke gerbang berikutnya!"</p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-2">
+                    <button id="res-retry-btn" onclick="retryLevel()" class="w-1/2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2.5 rounded-xl text-xs transition">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Ulangi Level
+                    </button>
+                    <button id="res-next-btn" onclick="proceedAfterLevel()" class="w-1/2 pink-gradient-btn font-bold py-2.5 rounded-xl text-xs transition shadow">
+                        <span>Lanjut Ekspedisi</span> <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. FINAL CERTIFICATE SCREEN -->
+        <div id="screen-certificate" class="hidden glass-card rounded-2xl p-4 md:p-8 my-4 border-2 border-gold-accent text-center">
+            <div id="printable-certificate" class="bg-white p-6 md:p-10 rounded-2xl border-4 border-double border-gold-accent shadow-xl relative overflow-hidden">
+                <!-- Islamic Corner Ornaments -->
+                <div class="absolute top-2 left-2 text-gold-accent opacity-40 text-2xl"><i class="fa-solid fa-bahai"></i></div>
+                <div class="absolute top-2 right-2 text-gold-accent opacity-40 text-2xl"><i class="fa-solid fa-bahai"></i></div>
+                <div class="absolute bottom-2 left-2 text-gold-accent opacity-40 text-2xl"><i class="fa-solid fa-bahai"></i></div>
+                <div class="absolute bottom-2 right-2 text-gold-accent opacity-40 text-2xl"><i class="fa-solid fa-bahai"></i></div>
+
+                <!-- Header -->
+                <div class="text-center mb-6">
+                    <p class="font-arabic text-2xl text-deep-rose mb-1 font-bold">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+                    <h2 class="text-xs uppercase tracking-widest text-gold-accent font-extrabold mb-1">SMA MA'HAD AL BAYYINAH</h2>
+                    <h1 class="text-2xl md:text-4xl font-extrabold text-dark-plum tracking-tight">SERTIFIKAT PENAKLUKAN EKSPEDISI TAHSIN</h1>
+                    <p class="text-xs md:text-sm text-gray-500 italic mt-1">Ujian Komprehensif Makharijul Huruf & Sifat-Sifatnya</p>
+                </div>
+
+                <!-- Certificate Body -->
+                <div class="my-6 space-y-3">
+                    <p class="text-xs text-gray-600 uppercase font-semibold">Diberikan Kepada Santriwati:</p>
+                    <div id="cert-player-name" class="text-2xl md:text-3xl font-extrabold text-deep-rose border-b-2 border-dusty-pink inline-block px-8 py-1">
+                        Nama Santriwati
+                    </div>
+                    <p id="cert-player-class" class="text-sm font-bold text-dark-plum">Kelas: XII SMA</p>
+
+                    <p class="text-xs md:text-sm text-gray-700 max-w-xl mx-auto leading-relaxed pt-3">
+                        Telah berhasil menyelesaikan seluruh lima gerbang ujian tajwid pada kegiatan <strong>"MISI TAHSIN: Ekspedisi Rahasia Makharijul Huruf"</strong> dengan ketelitian dan pemahaman mendalam.
+                    </p>
+                </div>
+
+                <!-- Achievement Badge & Details -->
+                <div class="my-6 bg-blush-pink/40 rounded-xl p-4 border border-dusty-pink max-w-lg mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+                    <div>
+                        <span class="block text-[10px] uppercase font-bold text-gray-500">Total Skor</span>
+                        <span id="cert-total-score" class="text-lg font-extrabold text-deep-rose">480 / 500</span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase font-bold text-gray-500">Akurasi</span>
+                        <span id="cert-accuracy" class="text-lg font-extrabold text-dark-plum">96%</span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase font-bold text-gray-500">Gelar Tahsin</span>
+                        <span id="cert-title" class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2 py-1 rounded inline-block mt-0.5">Mutiara Tahsin</span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase font-bold text-gray-500">Tanggal</span>
+                        <span id="cert-date" class="text-xs font-bold text-dark-plum mt-1 block">28/10/2026</span>
+                    </div>
+                </div>
+
+                <!-- Ummu Widaad Closing Message -->
+                <div class="bg-white p-4 rounded-xl border border-gold-accent/50 text-left text-xs text-gray-700 italic max-w-xl mx-auto mb-6 flex gap-3 items-center">
+                    <div class="w-10 h-10 rounded-full bg-dark-plum text-gold-accent flex-shrink-0 flex items-center justify-center font-bold">UW</div>
+                    <p id="cert-ummu-closing">
+                        “Alhamdulillah, anti telah menyelesaikan ekspedisi ini. Namun, ilmu tajwid bukan sekadar memenangkan permainan. Teruslah belajar, menyimak bacaan guru, dan memperbaiki tilawah dengan penuh kesungguhan. Baarakallahu fiiki.”
+                    </p>
+                </div>
+
+                <!-- Signatures -->
+                <div class="flex justify-around items-center pt-4 text-xs font-bold text-dark-plum border-t border-gray-200">
+                    <div>
+                        <p class="text-gray-500 text-[10px]">Penguji & Pemandu</p>
+                        <div class="h-10"></div>
+                        <p class="underline">Ummu Widaad</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-[10px]">Mata Pelajaran Tahsin</p>
+                        <div class="h-10"></div>
+                        <p class="underline">SMA Ma'had Al Bayyinah</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificate Action Buttons -->
+            <div class="mt-6 flex flex-wrap justify-center gap-3 no-print">
+                <button onclick="window.print()" class="gold-gradient-btn px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-print"></i> Cetak Sertifikat
+                </button>
+                <button onclick="showReviewModal()" class="bg-white border border-dusty-pink text-dark-plum px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-blush-pink transition flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> Lihat Ringkasan Soal
+                </button>
+                <button onclick="confirmRestart()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Main Lagi
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- REVIEW MODAL (FOR EXPLANATIONS AFTER FINISHING) -->
+    <div id="modal-review" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="glass-card max-w-3xl w-full rounded-2xl p-6 border-2 border-gold-accent max-h-[85vh] flex flex-col text-left">
+            <div class="flex justify-between items-center border-b border-dusty-pink pb-3 mb-3">
+                <h3 class="text-lg font-bold text-dark-plum"><i class="fa-solid fa-book-open text-deep-rose mr-2"></i> Ringkasan Materi & Kunci Jawaban</h3>
+                <button onclick="closeReviewModal()" class="text-gray-400 hover:text-gray-600 text-xl font-bold">&times;</button>
+            </div>
+            <div id="review-content-list" class="overflow-y-auto space-y-3 pr-2 text-xs md:text-sm">
+                <!-- Loaded dynamically -->
+            </div>
+            <div class="pt-3 border-t border-dusty-pink text-right">
+                <button onclick="closeReviewModal()" class="pink-gradient-btn px-5 py-2 rounded-lg text-xs font-bold">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS ENGINE & DATA -->
+    <script>
+        /* ==========================================================================
+           GAME STATE & DATA STRUCTURES
+           ========================================================================== */
+        let gameState = {
+            playerName: '',
+            playerClass: '',
+            currentLevel: 1,
+            unlockedLevel: 1,
+            levelScores: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+            levelAccuracy: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+            levelTimes: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+            hintsLeft: 3
+        };
+
+        let currentQuestionIdx = 0;
+        let currentLevelQuestions = [];
+        let timerInterval = null;
+        let timeLeft = 240; // 4 minutes
+        let isAnswerLocked = false;
+        let currentMatchPairs = {}; // for matching type
+        let currentCardOrder = [];  // for card ordering type
+        let selectedTouchItem = null; // mobile fallback
+
+        /* ==========================================================================
+           QUESTION BANK (HIGH DIFFICULTY TAHSIN & TAJWID FOR SMA MA'HAD AL BAYYINAH)
+           ========================================================================== */
+        const QUESTION_BANK = {
+            1: [ // LEVEL 1: MAKHARIJUL HURUF
+                {
+                    type: 'mcq',
+                    question: "Seorang santriwati menyatakan bahwa huruf Kaf (ك) dan Qaf (ق) berasal dari titik makhraj yang sama persis pada pangkal lidah. Analisis manakah yang paling tepat?",
+                    options: [
+                        "A. Benar, karena keduanya termasuk huruf Lisan (Pangkal Lidah).",
+                        "B. Salah, karena Qaf (ق) dari pangkal lidah paling belakang menempel langit-langit lunak, sedangkan Kaf (ك) sedikit di depannya menempel langit-langit keras/lunak.",
+                        "C. Benar, seluruh huruf lisan memiliki makhraj khusus yang persis sama.",
+                        "D. Salah, karena Qaf (ق) berasal dari Al-Halq (tenggorokan)."
+                    ],
+                    correct: 1,
+                    explanation: "Huruf Qaf (ق) keluar dari pangkal lidah (aqshal lisan) paling atas menempel pada langit-langit daging (lunak). Sedangkan Kaf (ك) berada tepat di bawah/depan posisi Qaf, menempel pada pertemuan langit-langit keras dan lunak. Maka makhraj khususnya berbeda."
+                },
+                {
+                    type: 'mcq',
+                    question: "Perhatikan makhraj huruf Dhad (ض) dan Lam (ل). Pernyataan manakah yang paling akurat membedakan keduanya?",
+                    options: [
+                        "A. Dhad (ض) keluar dari tepi lidah menempel geraham atas, sedangkan Lam (ل) keluar dari ujung tepi lidah hingga akhir ujungnya menempel gusi atas.",
+                        "B. Dhad (ض) dan Lam (ل) keluar dari makhraj Al-Jauf secara bersamaan.",
+                        "C. Dhad (ض) merupakan huruf Asy-Syafatain, sedangkan Lam (ل) adalah huruf Al-Lisan.",
+                        "D. Lam (ل) keluar dari pangkal lidah, sedangkan Dhad (ض) dari ujung lidah."
+                    ],
+                    correct: 0,
+                    explanation: "Makhraj Dhad (ض) berada pada ihda ihday hafatai al-lisan (salah satu atau kedua tepi lidah) menempel geraham atas. Lam (ل) berasal dari adna hafatai al-lisan (ujung tepi lidah) menuju akhir ujungnya menempel pada gusi depan atas."
+                },
+                {
+                    type: 'matching',
+                    question: "Jodohkanlah Nama Makhraj Umum dengan Huruf-Huruf Utama yang Keluar Darinya:",
+                    pairs: [
+                        { left: "Al-Jauf (الجوف)", right: "Huruf Mad (ا , و , ي)" },
+                        { left: "Al-Halq (الحلق)", right: "ء , هـ , ع , ح , غ , خ" },
+                        { left: "Asy-Syafatain (الشفتان)", right: "ف , ب , م , و" },
+                        { left: "Al-Khaisyum (الخيشوم)", right: "Ghunnah (Nun & Mim Tasydid)" }
+                    ],
+                    explanation: "Al-Jauf adalah rongga mulut & tenggorokan untuk huruf mad. Al-Halq untuk 6 huruf tenggorokan. Asy-Syafatain untuk bibir (Fa, Ba, Mim, Wawu). Al-Khaisyum khusus tempat keluarnya suara Ghunnah."
+                },
+                {
+                    type: 'order',
+                    question: "Urutkanlah posisi 5 Makhraj Khusus pada Al-Halq (Tenggorokan) dan Al-Lisan dari yang paling DALAM (bawah) ke paling LUAR (depan):",
+                    items: [
+                        "1. Aqshal Halq (Tenggorokan Bawah: ء , هـ)",
+                        "2. Adnal Halq (Tenggorokan Atas: غ , خ)",
+                        "3. Aqshal Lisan (Pangkal Lidah: ق)",
+                        "4. Wasathul Lisan (Tengah Lidah: ج , ش , ي)",
+                        "5. Tharaful Lisan (Ujung Lidah: ط , ت , د)"
+                    ],
+                    correctOrder: [0, 1, 2, 3, 4],
+                    explanation: "Urutan makhraj berjalan dari rongga dada/tenggorokan paling bawah (Aqshal Halq), naik ke tenggorokan atas (Adnal Halq), pangkal lidah (Aqshal Lisan), tengah lidah (Wasathul Lisan), hingga ke ujung lidah (Tharaful Lisan)."
+                },
+                {
+                    type: 'mcq',
+                    question: "Di antara huruf-huruf berikut: (ط , ت , د), makhraj khusus manakah yang tepat untuk ketiganya?",
+                    options: [
+                        "A. Ujung lidah menempel pada puncaknya gigi seri atas (Tharaful lisan ma'a ashli ats-tsanayal 'ulya).",
+                        "B. Tengah lidah menempel pada langit-langit keras.",
+                        "C. Ujung lidah menempel pada ujung gigi seri bawah.",
+                        "D. Tepi lidah menempel pada gigi geraham atas."
+                    ],
+                    correct: 0,
+                    explanation: "Huruf Tha (ط), Ta (ت), dan Dal (د) dikenal sebagai Al-Huruf An-Nith'iyyah, keluar dari ujung lidah yang menempel pada pangkal/gusi gigi seri atas."
+                },
+                {
+                    type: 'mcq',
+                    question: "Mengapa makhraj Al-Jauf disebut sebagai Makhraj Muqaddar (yang dikira-kirakan), sedangkan Al-Halq atau Al-Lisan disebut Makhraj Mu'ayyan (tertentu)?",
+                    options: [
+                        "A. Karena Al-Jauf tidak memiliki titik tumpu organ mulut yang pasti tempat berhentinya suara.",
+                        "B. Karena Al-Jauf hanya berlaku saat membaca Al-Fatihah.",
+                        "C. Karena Al-Halq tidak dapat dirasakan oleh pembaca.",
+                        "D. Karena Al-Jauf terdiri dari 17 makhraj khusus."
+                    ],
+                    correct: 0,
+                    explanation: "Makhraj Muqaddar tidak berakhir pada bagian organ tertentu yang spesifik (seperti gigi atau lidah), melainkan suara berakhir seiring berhentinya nafas di udara terbuka (rongga mulut dan tenggorokan)."
+                },
+                {
+                    type: 'mcq',
+                    question: "Huruf 'Ain (ع) dan 'Ha (ح) berlokasi pada makhraj khusus yang sama, yaitu:",
+                    options: [
+                        "A. Wasathul Halq (Tenggorokan bagian tengah / Katup napas Epiglottis).",
+                        "B. Aqshal Halq (Tenggorokan paling bawah dekat dada).",
+                        "C. Adnal Halq (Tenggorokan bagian atas dekat cetak lidah).",
+                        "D. Wasathul Lisan (Tengah lidah)."
+                    ],
+                    correct: 0,
+                    explanation: "Wasathul Halq merupakan tempat keluar untuk huruf 'Ain (ع) dan 'Ha (ح)."
+                },
+                {
+                    type: 'mcq',
+                    question: "Di manakah posisi makhraj huruf Fa (ف)?",
+                    options: [
+                        "A. Bibir bagian dalam bawah menempel pada ujung gigi seri atas.",
+                        "B. Kedua bibir merapat secara sempurna.",
+                        "C. Pangkal lidah menempel pada langit-langit atas.",
+                        "D. Ujung lidah di antara gigi seri atas dan bawah."
+                    ],
+                    correct: 0,
+                    explanation: "Huruf Fa (ف) keluar dari bathnus syafah as-sufla (bagian dalam bibir bawah) ditempelkan dengan athraf ats-tsanaya al-'ulya (ujung gigi seri atas)."
+                },
+                {
+                    type: 'mcq',
+                    question: "Berapakah jumlah total Makhraj Khusus (Khash) menurut jumhur ulama tajwid (Pendapat Imam Ibn Al-Jazari)?",
+                    options: [
+                        "A. 17 Makhraj Khusus",
+                        "B. 14 Makhraj Khusus",
+                        "C. 16 Makhraj Khusus",
+                        "D. 5 Makhraj Khusus"
+                    ],
+                    correct: 0,
+                    explanation: "Jumhur ulama ahli qiraat dan tajwid yang dipelopori Khalil bin Ahmad dan Ibn Al-Jazari menetapkan ada 17 makhraj khusus yang terbagi ke dalam 5 makhraj umum."
+                },
+                {
+                    type: 'mcq',
+                    question: "Huruf-huruf Dzawaliqiyyah (الذلقية) yaitu (ر , ل , ن) dinamakan demikian karena keluar dari:",
+                    options: [
+                        "A. Dzalqul lisan (Ujung / lancip lidah).",
+                        "B. Pangkal lidah mendekati tenggorokan.",
+                        "C. Bibir luar bagian atas.",
+                        "D. Rongga dada."
+                    ],
+                    correct: 0,
+                    explanation: "Dzalqul lisan berarti bagian terujung/lancar dari lidah. Huruf Ra, Lam, dan Nun keluar dari area ujung lidah ini."
+                }
+            ],
+            2: [ // LEVEL 2: SIFAT MEMILIKI LAWAN
+                {
+                    type: 'mcq',
+                    question: "Seorang santriwati mengelompokkan huruf ص، ض، ط، ظ sebagai huruf Isti'la sekaligus Ithbaq. Mengapa klasifikasi tersebut tepat?",
+                    options: [
+                        "A. Karena seluruh huruf Isti'la pasti Ithbaq.",
+                        "B. Karena keempat huruf tersebut memiliki terangkatnya pangkal lidah (Isti'la) sekaligus lengketnya lidah ke langit-langit (Ithbaq).",
+                        "C. Karena Ithbaq merupakan lawan langsung dari Isti'la.",
+                        "D. Karena keempat huruf tersebut adalah huruf Hams."
+                    ],
+                    correct: 1,
+                    explanation: "Setiap huruf Ithbaq (ص، ض، ط، ظ) otomatis merupakan huruf Isti'la, tetapi tidak semua huruf Isti'la itu Ithbaq (seperti ق, ك, غ, خ yang Isti'la namun Infitah)."
+                },
+                {
+                    type: 'matching',
+                    question: "Jodohkan Sifat Huruf Dzatiyyah dengan LAWAN Sifatnya yang Tepat:",
+                    pairs: [
+                        { left: "Hams (الهمس - Udara mengalir)", right: "Jahr (الجهر - Udara tertahan)" },
+                        { left: "Syiddah (الشدة - Suara tertahan)", right: "Rakhawah (الرخاوة - Suara mengalir)" },
+                        { left: "Isti'la (الاستعلاء - Pangkal lidah naik)", right: "Istifal (الاستفال - Pangkal lidah turun)" },
+                        { left: "Ithbaq (الإطباق - Lidah melekat)", right: "Infitah (الانفتاح - Lidah terbuka)" }
+                    ],
+                    explanation: "Ini adalah pasangan sifat dzatiyyah bermutadhadah (memiliki lawan) sesuai kaidah tajwid dasar dan tingkat lanjut."
+                },
+                {
+                    type: 'mcq',
+                    question: "Huruf manakah yang memiliki sifat Bainiyyah / Tawassuth (antara tertahannya suara dan mengalirnya suara)?",
+                    options: [
+                        "A. Huruf yang tergabung dalam kalimat (لِنْ عُمَرُ)",
+                        "B. Huruf yang tergabung dalam (أَجِدُ قَطٍ بَكَتْ)",
+                        "C. Huruf (فَحَثَّهُ شَخْصٌ سَكَتَ)",
+                        "D. Huruf (خُصَّ ضَغْطٍ قِظْ)"
+                    ],
+                    correct: 0,
+                    explanation: "Sifat Bainiyyah/Tawassuth berada di antara Syiddah dan Rakhawah, yaitu pada 5 huruf: Lam, Nun, 'Ain, Mim, Ra (لِنْ عُمَرُ)."
+                },
+                {
+                    type: 'order',
+                    question: "Urutkan tingkat kekuatan suara dari yang paling kuat tertahan suaranya hingga yang paling longgar mengalir:",
+                    items: [
+                        "1. Sifat Syiddah (Suara tertahan total)",
+                        "2. Sifat Tawassuth / Bainiyyah (Sedang / Pertengahan)",
+                        "3. Sifat Rakhawah (Suara mengalir bebas)"
+                    ],
+                    correctOrder: [0, 1, 2],
+                    explanation: "Syiddah memiliki tekanan paling kuat sehingga suara terhenti total, Bainiyyah berada di tengah, dan Rakhawah membiarkan suara mengalir paling panjang."
+                },
+                {
+                    type: 'mcq',
+                    question: "Apakah perbedaan mendasar antara Hams/Jahr dengan Syiddah/Rakhawah?",
+                    options: [
+                        "A. Hams/Jahr berkaitan dengan aliran NAFA/UDARA, sedangkan Syiddah/Rakhawah berkaitan dengan aliran SUARA.",
+                        "B. Hams/Jahr berkaitan dengan aliran SUARA, sedangkan Syiddah/Rakhawah berkaitan dengan NAFA/UDARA.",
+                        "C. Keduanya sama persis tidak ada perbedaan.",
+                        "D. Hams hanya ada pada huruf mad, sedangkan Syiddah ada pada huruf qalqalah."
+                    ],
+                    correct: 0,
+                    explanation: "Prinsip utama tajwid: Hams vs Jahr mengukur terlepas atau tertahannya nafas (nafas/udara). Syiddah vs Rakhawah mengukur terhenti atau mengalirnya suara."
+                },
+                {
+                    type: 'mcq',
+                    question: "Huruf Kaf (ك) dan Ta (ت) memiliki keunikan kombinasi dua sifat berlawanan. Manakah penjelasan yang paling tepat saat huruf tersebut sukun?",
+                    options: [
+                        "A. Diawali dengan Syiddah (tertahannya suara) lalu diakhiri dengan Hams (terlepasnya aliran nafas).",
+                        "B. Diawali Hams lalu diakhiri Rakhawah.",
+                        "C. Keduanya merupakan huruf Jahr total tanpa nafas.",
+                        "D. Diawali Isti'la lalu diakhiri Ithbaq."
+                    ],
+                    correct: 0,
+                    explanation: "Pada ك dan ت sukun, terjadi Syiddah terlebih dahulu di mana makhraj terkunci rapat menahan suara, baru kemudian terlepaslah Hams (aliran udara kecil) untuk memperjelas huruf."
+                },
+                {
+                    type: 'mcq',
+                    question: "Grup huruf (خُصَّ ضَغْطٍ قِظْ) merupakan seluruh huruf yang memiliki sifat:",
+                    options: [
+                        "A. Isti'la (Terangkatnya pangkal lidah ke langit-langit).",
+                        "B. Ithbaq seluruhnya.",
+                        "C. Idzlaq.",
+                        "D. Hams."
+                    ],
+                    correct: 0,
+                    explanation: "7 huruf (خ , ص , ض , غ , ط , ق , ظ) terkumpul dalam rumus 'Khushsha Dhagthin Qizh' yang merupakan huruf-huruf Isti'la (tafkhim/tebal)."
+                },
+                {
+                    type: 'mcq',
+                    question: "Huruf-huruf Idzlaq (الإذلاق) terangkum dalam lafaz (فِرَّ مِنْ لُبِّ). Apakah arti dari sifat Idzlaq?",
+                    options: [
+                        "A. Ringan dan cepat diucapkan karena keluar dari ujung lidah atau bibir.",
+                        "B. Berat dan sulit diucapkan karena jauh di tenggorokan.",
+                        "C. Memiliki suara memantul keras.",
+                        "D. Memiliki suara bersiul."
+                    ],
+                    correct: 0,
+                    explanation: "Idzlaq secara bahasa artinya lancar/ujung. Huruf-hurufnya mudah diucapkan sebab makhrajnya berada di ujung lidah atau di bibir."
+                },
+                {
+                    type: 'mcq',
+                    question: "Lawan dari sifat Idzlaq adalah Ishmat (الإصمات). Apakah konsekuensi dari sifat Ishmat dalam tata bahasa Arab?",
+                    options: [
+                        "A. Kata asli bahasa Arab yang terdiri dari 4 atau 5 huruf murni tidak boleh seluruh hurufnya terdiri dari huruf Ishmat tanpa ada minimal 1 huruf Idzlaq.",
+                        "B. Setiap huruf Ishmat wajib dibaca pantul.",
+                        "C. Huruf Ishmat tidak boleh dibaca panjang.",
+                        "D. Huruf Ishmat hanya keluar dari Al-Jauf."
+                    ],
+                    correct: 0,
+                    explanation: "Kaidah linguistik Tajwid & Nahwu: Kata ruba'i (4 huruf) atau khumasi (5 huruf) murni dalam bahasa Arab pasti mengandung minimal satu huruf Idzlaq karena beratnya mengucapkan susunan huruf-huruf Ishmat secara beruntun."
+                },
+                {
+                    type: 'mcq',
+                    question: "Huruf Hamzah (ء) memiliki sifat-sifat berikut ini, KECUALI:",
+                    options: [
+                        "A. Hams (aliran udara bebas)",
+                        "B. Jahr (suara udara tertahan)",
+                        "C. Syiddah (suara terputus kuat)",
+                        "D. Istifal (pangkal lidah rendah)"
+                    ],
+                    correct: 0,
+                    explanation: "Hamzah (ء) adalah huruf Jahr dan Syiddah yang sangat kuat, BUKAN huruf Hams."
+                }
+            ],
+            3: [ // LEVEL 3: SIFAT TANPA LAWAN
+                {
+                    type: 'mcq',
+                    question: "Seorang santriwati menyamakan sifat Istithalah pada huruf Dhad (ض) dengan Tafasysyi pada huruf Syin (ش). Pernyataan manakah yang paling akurat?",
+                    options: [
+                        "A. Pernyataan tersebut salah, karena Istithalah adalah memanjangnya makhraj & aliran suara sepanjang tepi lidah, sedangkan Tafasysyi adalah menyebarnya udara di dalam mulut.",
+                        "B. Benar, karena keduanya merupakan istilah yang persis sama.",
+                        "C. Salah, karena Istithalah adalah lawan dari Qalqalah.",
+                        "D. Benar, keduanya hanya terdapat pada huruf Ta."
+                    ],
+                    correct: 0,
+                    explanation: "Istithalah (استطالة) khas pada Dhad (ض) yaitu memanjangnya makhraj dari awal tepi lidah hingga akhir depan. Tafasysyi (تفشي) khas pada Syin (ش) yaitu angin/udara yang menyebar membentur bagian dalam mulut."
+                },
+                {
+                    type: 'matching',
+                    question: "Jodohkan Sifat Tanpa Lawan berikut dengan Huruf Pemiliknya yang Tepat:",
+                    pairs: [
+                        { left: "Shafir (الصفير - Suara siul tajam)", right: "ص , س , ز" },
+                        { left: "Qalqalah (القلقلة - Memantul)", right: "ق , ط , ب , ج , د" },
+                        { left: "Inhiraf (الانحراف - Suara melenceng)", right: "ل , ر" },
+                        { left: "Takrir (التكرير - Getaran ujung lidah)", right: "ر (Khusus)" }
+                    ],
+                    explanation: "Shafir dimiliki Shad, Sin, Zai. Qalqalah pada 'Quthbu Jadin'. Inhiraf pada Lam dan Ra. Takrir khusus pada Ra (yang harus dijaga agar tidak berlebihan)."
+                },
+                {
+                    type: 'order',
+                    question: "Urutkan Tingkatan Qalqalah dari yang paling KECIL hingga paling KUAT pantulannya:",
+                    items: [
+                        "1. Qalqalah Sughra (Sukun di tengah kata)",
+                        "2. Qalqalah Kubra (Sukun karena waqaf di akhir kata)",
+                        "3. Qalqalah Akbar / Asyadd (Sukun bertasydid di akhir kata saat waqaf)"
+                    ],
+                    correctOrder: [0, 1, 2],
+                    explanation: "Qalqalah Sughra paling ringan, Kubra lebih jelas saat waqaf, dan Qalqalah Akbar (seperti pada Tab-ba wa watab-b) adalah yang paling kuat kejolak pantulannya."
+                },
+                {
+                    type: 'mcq',
+                    question: "Sifat Lin (اللين) terjadi pada huruf Wawu (و) dan Ya (ي) dengan syarat mendasar:",
+                    options: [
+                        "A. Kedua huruf bersukun dan didahului oleh harakat Fathah.",
+                        "B. Kedua huruf didahului oleh harakat Kasrah.",
+                        "C. Kedua huruf bertasydid di awal kalimat.",
+                        "D. Kedua huruf dibaca dengung 3 harakat."
+                    ],
+                    correct: 0,
+                    explanation: "Sifat Lin (kelembutan) hanya aktif jika Wawu sukun atau Ya sukun didahului oleh huruf berharakat Fathah (contoh: خَوْفٌ , بَيْتٌ)."
+                },
+                {
+                    type: 'mcq',
+                    question: "Mengapa sifat Takrir (التكرير) pada huruf Ra (ر) dipelajari dalam tajwid?",
+                    options: [
+                        "A. Untuk diketahui agar dihindari getaran yang berlebihan (lebih dari satu getaran halus).",
+                        "B. Agar dibaca bergetar sebanyak 5 kali.",
+                        "C. Untuk mengganti makhraj huruf Ra menjadi Lam.",
+                        "D. Agar huruf Ra dibaca dengung."
+                    ],
+                    correct: 0,
+                    explanation: "Para ulama menegaskan: 'Sifat Takrir dipelajari untuk disembunyikan/dijaga' (تُعْرَفُ لِتُخْفَى), yaitu mencegah lidah bergetar secara beruntun dan berlebihan saat mengucapkan Ra."
+                },
+                {
+                    type: 'mcq',
+                    question: "Sifat Inhiraf (الانحراف) pada huruf Lam (ل) berarti suara melenceng ke arah:",
+                    options: [
+                        "A. Dua sisi tepi lidah karena ujung lidah tertutup rapat pada gusi.",
+                        "B. Tenggorokan bawah.",
+                        "C. Hidung (Al-Khaisyum).",
+                        "D. Bibir luar."
+                    ],
+                    correct: 0,
+                    explanation: "Pada huruf Lam (ل), ketika ujung lidah menempel rapat di gusi atas, aliran suara melenceng keluar melewati samping kanan dan kiri tepi lidah."
+                },
+                {
+                    type: 'mcq',
+                    question: "Huruf Shad (ص) memiliki kombinasi sifat tanpa lawan dan sifat bermutadhadah berikut yang tepat:",
+                    options: [
+                        "A. Shafir, Hams, Rikhawah, Isti'la, Ithbaq, Ishmat.",
+                        "B. Qalqalah, Jahr, Syiddah, Istifal.",
+                        "C. Tafasysyi, Hams, Bainiyyah.",
+                        "D. Lin, Jahr, Ithbaq."
+                    ],
+                    correct: 0,
+                    explanation: "Huruf Shad (ص) adalah huruf yang sangat kuat: memiliki Shafir (tanpa lawan), Hams, Rakhawah, Isti'la, Ithbaq, dan Ishmat."
+                },
+                {
+                    type: 'mcq',
+                    question: "Sifat Ghunnah (الغنّة) sebagai sifat dzatiyyah yang melekat pada pembawaan huruf terdapat pada:",
+                    options: [
+                        "A. Nun (ن) dan Mim (م) dalam seluruh kondisinya.",
+                        "B. Hanya huruf Mad.",
+                        "C. Huruf Qalqalah saja.",
+                        "D. Huruf-huruf Al-Halq."
+                    ],
+                    correct: 0,
+                    explanation: "Ghunnah adalah sifat asli (dzatiyyah) pada tubuh huruf Nun dan Mim, walaupun tingkat kesempurnaannya berbeda sesuai kondisi (tasydid, idgham, ikhfa, sukun, mufarrakh)."
+                },
+                {
+                    type: 'mcq',
+                    question: "Apakah yang dimaksud dengan Shafir (الصفير)?",
+                    options: [
+                        "A. Suara tambahan yang tajam menyerupai siulan burung yang keluar di antara gigi seri.",
+                        "B. Suara memantul saat sukun.",
+                        "C. Suara dengung dari rongga hidung.",
+                        "D. Suara samar karena nafas habis."
+                    ],
+                    correct: 0,
+                    explanation: "Shafir secara bahasa adalah siulan. Secara istilah adalah tajamnya suara huruf saat keluar melewati celah sempit di antara gigi seri atas dan bawah."
+                },
+                {
+                    type: 'mcq',
+                    question: "Berapakah jumlah total Sifat yang TIDAK Memiliki Lawan (Ghairu Mutadhadah) yang populer menurut Ibn Al-Jazari?",
+                    options: [
+                        "A. 7 Sifat (Shafir, Qalqalah, Lin, Inhiraf, Takrir, Tafasysyi, Istithalah)",
+                        "B. 10 Sifat",
+                        "C. 5 Sifat",
+                        "D. 12 Sifat"
+                    ],
+                    correct: 0,
+                    explanation: "Matan Al-Jazariyyah merincikan 7 sifat ghairu mutadhadah utama."
+                }
+            ],
+            4: [ // LEVEL 4: SIFAT KHAFA & ANALISIS BACAAN
+                {
+                    type: 'mcq',
+                    question: "Seorang santriwati mengatakan bahwa istilah Khafa (الخَفَاء) dan Hams (الهمس) adalah dua hal yang sepenuhnya sama persis. Bagaimana penilaian tajwid yang tepat?",
+                    options: [
+                        "A. Salah, karena Khafa adalah tersembunyi/lemahnya suara huruf saat diucapkan, sedangkan Hams adalah berhembusnya nafas.",
+                        "B. Benar, keduanya sama persis tanpa ada perbedaan dalam kitab tajwid.",
+                        "C. Benar, karena Khafa hanya terjadi pada huruf Qalqalah.",
+                        "D. Salah, karena Khafa adalah hukum Nun Sukun."
+                    ],
+                    correct: 0,
+                    explanation: "Khafa (tersembunyinya suara huruf saat diucapkan sehingga rawan hilang jika tidak diperjelas) berbeda konteks dengan Hams (mengalirnya nafas). Rujukan: Kitab-kitab Tajwid Klasik/Kontemporer (seperti Nihayatul Qaulil Mufid, Ad-Daqaiq Al-Muhkamah)."
+                },
+                {
+                    type: 'matching',
+                    question: "Jodohkan Kelompok Huruf dengan Sifat Khafa (الخَفَاء) dan Cara Penjelasannya saat Tilawah:",
+                    pairs: [
+                        { left: "Huruf Mad (ا , و , ي)", right: "Khafa karena luasnya makhraj Al-Jauf; dijaga dengan memanjangkan kadar mad." },
+                        { left: "Ha Dhamir (ـهـ)", right: "Khafa karena makhrajnya jauh di Aqshal Halq & sifatnya lemah; dijaga dengan Shilah/tekanan makhraj." },
+                        { left: "Huruf Hams & Rakhawah", right: "Memiliki potensi kejelasan suara berkurang bila tidak dialirkan nafas dan suaranya." },
+                        { left: "Lafaz (هَاوِيَةٌ)", right: "Mengandung gabungan huruf Ha dan Mad yang keduanya memiliki Sifat Khafa." }
+                    ],
+                    explanation: "Sifat Khafa terdapat pada 4 huruf yang terangkum dalam lafaz (HAWIYAH / هـ , ا , و , ي). Diberi perhatian agar suaranya tidak lenyap saat dibaca."
+                },
+                {
+                    type: 'mcq',
+                    question: "Manakah di antara lafaz berikut yang mengumpulkan SELURUH huruf yang memiliki Sifat Khafa (الخَفَاء)?",
+                    options: [
+                        "A. هَاوِيَة (Ha, Alif, Wawu, Ya)",
+                        "B. أَبْجَد (Alif, Ba, Jim, Dal)",
+                        "C. يَرْمَلُون (Ya, Ra, Mim, Lam, Wawu, Nun)",
+                        "D. قُطْبُ جَدٍّ (Qaf, Tha, Ba, Jim, Dal)"
+                    ],
+                    correct: 0,
+                    explanation: "Huruf Khafa ada 4 yaitu huruf Ha (هـ) dan tiga huruf Mad (ا , و , ي) yang dirangkum dalam kata 'HAWIYAH' (هَاوِيَة)."
+                },
+                {
+                    type: 'order',
+                    question: "Urutkan analisis penyebab terjadinya Sifat Khafa pada huruf Ha (هـ) hingga langkah pencegahan kesalahan bacaannya:",
+                    items: [
+                        "1. Huruf Ha (هـ) keluar dari Aqshal Halq (tenggorokan paling dalam).",
+                        "2. Huruf Ha memiliki gabungan sifat-sifat lemah (Hams, Rakhawah, Istifal, Infitah).",
+                        "3. Mengakibatkan suaranya tersembunyi (Khafa) dan rentan samar/hilang saat dibaca.",
+                        "4. Pembaca wajib menekan makhraj dengan benar dan mengalirkan Hams serta Rakhawah secara tepat."
+                    ],
+                    correctOrder: [0, 1, 2, 3],
+                    explanation: "Secara analisis tajwid: Makhraj jauh + sifat seluruhnya lemah = timbul Khafa. Solusinya adalah menyempurnakan makhraj dan sifatnya."
+                },
+                {
+                    type: 'mcq',
+                    question: "Sifat Huruf (Sifatul Huruf) dan Hukum Tajwid (Hukmut Tajwid) adalah dua konsep berbeda. Manakah contoh yang membedakannya dengan benar?",
+                    options: [
+                        "A. Qalqalah & Isti'la adalah Sifat Asli Huruf, sedangkan Idgham & Ikhfa adalah Hukum yang timbul akibat pertemuan antar huruf.",
+                        "B. Idgham adalah Sifat Asli, sedangkan Hams adalah Hukum Tajwid.",
+                        "C. Keduanya adalah istilah yang persis sama dalam ilmu tajwid.",
+                        "D. Makhraj adalah Hukum Tajwid, sedangkan Mad Wajib Mutthasil adalah Sifat Huruf."
+                    ],
+                    correct: 0,
+                    explanation: "Sifat Huruf (seperti Hams, Jahr, Isti'la) melekat pada diri huruf itu sendiri. Hukum Tajwid (seperti Ikhfa, Idgham, Iqlab) muncul ketika dua huruf atau lebih bertemu dalam susunan kata."
+                },
+                {
+                    type: 'mcq',
+                    question: "Mengapa huruf Alif (ا) selalu bergantung pada harakat huruf sebelumnya dan tidak pernah menerima harakat?",
+                    options: [
+                        "A. Karena Alif adalah huruf murni Al-Jauf yang selalu sukun dan memanjangkan fathah.",
+                        "B. Karena Alif berasal dari Al-Khaisyum.",
+                        "C. Karena Alif memilki sifat Qalqalah Akbar.",
+                        "D. Karena Alif sama persis dengan Hamzah."
+                    ],
+                    correct: 0,
+                    explanation: "Alif Layyinah/Mad tidak menerima harakat sama sekali dan merupakan huruf muqaddar murni dari rongga Al-Jauf."
+                },
+                {
+                    type: 'mcq',
+                    question: "Ketika membaca kalimat (اهْدِنَا الصِّرَاطَ), huruf Ha (هـ) pada 'Ihdina' harus dibaca jelas dan tidak boleh berubah menjadi 'Ihdina' (dengan Ha halus/ح). Kesalahan mengganti Ha (هـ) menjadi 'Ha (ح) disebut:",
+                    options: [
+                        "A. Lahn Jali (Kesalahan Jelas/Besar yang merubah struktur/arti).",
+                        "B. Lahn Khafi.",
+                        "C. Idgham Bighunnah.",
+                        "D. Mad 'Arid lissukun."
+                    ],
+                    correct: 0,
+                    explanation: "Mengubah suatu huruf menjadi huruf lain karena ketidakpastian makhraj adalah Lahn Jali (kesalahan fatal/nyata)."
+                },
+                {
+                    type: 'mcq',
+                    question: "Catatan Referensi Tajwid: Pembahasan Sifat Khafa (الخَفَاء) disajikan dalam literatur tajwid seperti Nihayatul Qaulil Mufid dan Al-Muqaddimah. Mengapa penyajian Sifat Khafa kadang tidak dicantumkan dalam ringkasan dasar?",
+                    options: [
+                        "A. Karena sebagian ulama memasukkan pembahasan Khafa ke dalam dampak lemahnya sifat Hams dan Istifal pada huruf Mad & Ha.",
+                        "B. Karena sifat Khafa diharamkan dipelajari.",
+                        "C. Karena sifat Khafa hanya ada pada Bahasa Indonesia.",
+                        "D. Karena sifat Khafa adalah bid'ah."
+                    ],
+                    correct: 0,
+                    explanation: "Dalam matan Al-Jazariyyah, sifat fokus pada 17-18 sifat utama. Khafa dibahas lebih terperinci dalam kitab-kitab syarah dan pendalaman tajwid komprehensif."
+                },
+                {
+                    type: 'mcq',
+                    question: "Dalam lafaz (مَالِيَهْ ۜ هَلَكَ), saat dibaca Saktah atau Idgham, Sifat Khafa pada Ha Saktah dibantu kejelasannya dengan cara:",
+                    options: [
+                        "A. Menjaga kejelasan makhraj Ha dari Aqshal Halq dengan aliran Hams yang proporsional.",
+                        "B. Membaca qalqalah pada Ha.",
+                        "C. Mengubah Ha menjadi Mim.",
+                        "D. Memanjangkannya 6 harakat."
+                    ],
+                    correct: 0,
+                    explanation: "Menjaga huruf Ha saktah membutuhkan ketelitian menahan dan memancarkan sifat Hams dan Rakhawah dari pangkal tenggorokan."
+                },
+                {
+                    type: 'mcq',
+                    question: "Analisis Kesalahan: Seorang santriwati membaca huruf Wawu Mad (و) pada (يَقُولُ) dengan memasukkan suara ke hidung (terdengar sengau/ghunnah). Analisis penyebab kesalahan ini adalah:",
+                    options: [
+                        "A. Terjadinya kebocoran aliran suara ke makhraj Al-Khaisyum, yang seharusnya murni mengalir dari Al-Jauf dan Asy-Syafatain.",
+                        "B. Kurang panjang 5 harakat.",
+                        "C. Karena Wawu adalah huruf Isti'la.",
+                        "D. Karena Wawu memiliki sifat Shafir."
+                    ],
+                    correct: 0,
+                    explanation: "Suara sengau pada huruf Mad adalah kesalahan umum (Lahn Khafi) akibat tidak menutup rongga hidung dan kurang sempurnanya pembukaan rongga Al-Jauf."
+                }
+            ],
+            5: [ // LEVEL 5: MASTER TAHSIN (INTEGRATIVE EXAM)
+                {
+                    type: 'mcq',
+                    question: "Perhatikan lima pernyataan berikut:\n(1) Huruf Dhad (ض) memiliki sifat Istithalah.\n(2) Huruf Syin (ش) memiliki sifat Tafasysyi.\n(3) Sifat Jahr berlawanan dengan Hams.\n(4) Sifat Ithbaq berlawanan dengan Isti'la.\n(5) Seluruh sifat tanpa lawan pasti dimiliki oleh semua huruf.\n\nPilihlah kombinasi pernyataan yang BENAR:",
+                    options: [
+                        "A. (1), (2), dan (3)",
+                        "B. (1), (2), (3), dan (4)",
+                        "C. (1), (2), dan (5)",
+                        "D. Semua pernyataan benar"
+                    ],
+                    correct: 0,
+                    explanation: "Pernyataan (1), (2), dan (3) BENAR. Pernyataan (4) SALAH karena Ithbaq berlawanan dengan Infitah (Isti'la berlawanan dengan Istifal). Pernyataan (5) SALAH karena sifat tanpa lawan hanya dimiliki huruf-huruf tertentu."
+                },
+                {
+                    type: 'matching',
+                    question: "Jodohkan Huruf-Huruf Berikut dengan Klasifikasi Derajat Ketebalan / Tafkhim-nya saat Berharakat Fathah:",
+                    pairs: [
+                        { left: "ط (Tho)", right: "Tafkhim Paling Kuat (Isti'la + Ithbaq + Qalqalah/Syiddah)" },
+                        { left: "ق (Qaf)", right: "Tafkhim Kuat (Isti'la + Infitah)" },
+                        { left: "ر (Ra) Fathah", right: "Tafkhim 'Arid (Tebal karena harakat Fathah)" },
+                        { left: "ل (Lam) pada Lafazul Jalalah (اللَّه)", right: "Tafkhim 'Arid jika didahului Fathah / Dhammah" }
+                    ],
+                    explanation: "Tingkat ketebalan bacaan tajwid dipengaruhi oleh gabungan sifat Isti'la, Ithbaq, dan kondisi harakat."
+                },
+                {
+                    type: 'order',
+                    question: "Urutkan langkah penalaran analisis tilawah dari identifikasi awal hingga eksekusi sifat saat membaca huruf (ط) sukun:",
+                    items: [
+                        "1. Tentukan Makhraj: Ujung lidah menempel pangkal gigi seri atas.",
+                        "2. Identifikasi Sifat Lawan: Jahr, Syiddah, Isti'la, Ithbaq, Ishmat.",
+                        "3. Identifikasi Sifat Tanpa Lawan: Qalqalah.",
+                        "4. Eksekusi Tilawah: Tertahan suara/nafas kuat lalu dipantulkan secara tebal (Mufakhkhamah)."
+                    ],
+                    correctOrder: [0, 1, 2, 3],
+                    explanation: "Tahapan penalaran tajwid ilmiah: Cek Makhraj -> Cek Sifat Bermutadhadah -> Cek Sifat Ghairu Mutadhadah -> Aplikasikan pengucapan."
+                },
+                {
+                    type: 'mcq',
+                    question: "Huruf Ra (ر) memiliki sifat Inhiraf sekaligus Takrir. Bagaimanakah interaksi kedua sifat ini saat Ra dibaca bertasydid (رَّ)?",
+                    options: [
+                        "A. Lidah ditempelkan rapat menahan getaran berlebih (Takrir) sembari membiarkan sedikit suara melenceng di ujung lidah (Inhiraf).",
+                        "B. Lidah digetarkan sebanyak 10 kali secara keras.",
+                        "C. Ra diganti menjadi suara Zai.",
+                        "D. Ra dibaca pantul qalqalah."
+                    ],
+                    correct: 0,
+                    explanation: "Saat Ra bertasydid, makhraj dikunci lebih kuat untuk menyembunyikan Takrir liar, tetapi sifat Inhiraf menjaga agar suara tidak tercekik total."
+                },
+                {
+                    type: 'mcq',
+                    question: "Manakah di antara huruf berikut yang memiliki sifat Paling BANYAK (7 Sifat Dzatiyyah)?",
+                    options: [
+                        "A. Huruf Ra (ر)",
+                        "B. Huruf Alif (ا)",
+                        "C. Huruf Ba (ب)",
+                        "D. Huruf Mim (م)"
+                    ],
+                    correct: 0,
+                    explanation: "Huruf Ra (ر) adalah satu-satunya huruf hijaiyah yang memiliki 7 sifat dzatiyyah: Jahr, Tawassuth, Istifal, Infitah, Idzlaq, Inhiraf, dan Takrir."
+                },
+                {
+                    type: 'mcq',
+                    question: "Analyse Kasus: Mengapa huruf Lam (ل) dan Nun (ن) ketika sukun bertemu huruf hidup tidak dibaca Qalqalah, padahal keduanya memiliki kelengketan makhraj?",
+                    options: [
+                        "A. Karena Lam memiliki sifat Bainiyyah & Inhiraf, sedangkan Nun memiliki sifat Bainiyyah & Ghunnah yang mengalirkan suara sehingga makhraj terlepas tanpa perlu kejolak pantulan.",
+                        "B. Karena Lam dan Nun adalah huruf Isti'la.",
+                        "C. Karena Lam dan Nun tidak berada di Al-Lisan.",
+                        "D. Karena keduanya huruf Hams mutlak."
+                    ],
+                    correct: 0,
+                    explanation: "Sifat Bainiyyah (aliran suara sedang) serta keberadaan Ghunnah pada Nun dan Inhiraf pada Lam memberi jalan keluarnya suara tanpa mengalami penguncian Syiddah total seperti huruf Qalqalah."
+                },
+                {
+                    type: 'mcq',
+                    question: "Apabila huruf Ba (ب) sukun dibaca tanpa Qalqalah, sifat kuat apakah yang akan HILANG atau rusak?",
+                    options: [
+                        "A. Sifat Syiddah dan Jahr-nya tidak terlepas secara sempurna sehingga makhraj tercekik.",
+                        "B. Sifat Hams-nya hilang.",
+                        "C. Sifat Isti'la-nya hilang.",
+                        "D. Sifat Shafir-nya hilang."
+                    ],
+                    correct: 0,
+                    explanation: "Huruf Ba adalah Syiddah & Jahr. Jika sukun dan tidak di-Qalqalah-kan, makhraj tercekik tertutup rapat tanpa kejelasan bunyi."
+                },
+                {
+                    type: 'mcq',
+                    question: "Di antara pilihan berikut, manakah kombinasi huruf yang SELURUHNYA memiliki sifat HAMS (فَحَثَّهُ شَخْصٌ سَكَتَ)?",
+                    options: [
+                        "A. ف , ح , ث , هـ , ش , خ , ص , س , ك , ت",
+                        "B. ق , ط , ب , ج , د",
+                        "C. ء , ج , د , ق , ط , ب",
+                        "D. ي , ر , م , ل , و , ن"
+                    ],
+                    correct: 0,
+                    explanation: "10 huruf Hams terangkum sempurna dalam rumusan klasik: 'Fahats-tsahu syakhshun sakat'."
+                },
+                {
+                    type: 'mcq',
+                    question: "Manakah pernyataan yang BENAR mengenai sifat huruf Sad (ص) dibanding Sin (س)?",
+                    options: [
+                        "A. Keduanya sama-sama Hams, Rakhawah, Shafir, dan Infitah.",
+                        "B. Shad dan Sin sama-sama memiliki Shafir, Hams, dan Rakhawah; tetapi Shad bersifat Isti'la dan Ithbaq (tebal), sedangkan Sin bersifat Istifal dan Infitah (tipis).",
+                        "C. Shad tidak memiliki Shafir.",
+                        "D. Sin adalah huruf Qalqalah."
+                    ],
+                    correct: 1,
+                    explanation: "Perbedaan utama Sad dan Sin terletak pada Isti'la & Ithbaq pada Sad yang membuatnya dibaca tebal/mufakhkham."
+                },
+                {
+                    type: 'mcq',
+                    question: "Huruf Ghain (غ) dan Khā (خ) berasal dari Adnal Halq. Sifat apakah yang MEMBEDAKAN keduanya?",
+                    options: [
+                        "A. Ghain memiliki sifat Jahr (nafas tertahan), sedangkan Khā memiliki sifat Hams (nafas mengalir).",
+                        "B. Ghain bersifat Istifal, Khā bersifat Isti'la.",
+                        "C. Ghain huruf Qalqalah, Khā huruf Lin.",
+                        "D. Keduanya tidak memiliki perbedaan sifat sama sekali."
+                    ],
+                    correct: 0,
+                    explanation: "Ghain (غ) dan Khā (خ) memiliki makhraj sama, Isti'la sama, Rakhawah sama. Pembeda utamanya adalah Ghain bersifat Jahr, sedangkan Khā bersifat Hams."
+                },
+                {
+                    type: 'mcq',
+                    question: "Mengapa pembaca Al-Qur'an dituntut menghindari kesalahan 'Lahn Khafi' saat menerapkan sifat-sifat huruf?",
+                    options: [
+                        "A. Karena Lahn Khafi menyalahi kesempurnaan keindahan tilawah (Kamalut Tilawah) yang diriwayatkan secara mutawatir.",
+                        "B. Karena Lahn Khafi membatalkan keislaman.",
+                        "C. Karena Lahn Khafi merubah arti mushaf secara total.",
+                        "D. Karena Lahn Khafi wajib dihindari hanya di luar shalat."
+                    ],
+                    correct: 0,
+                    explanation: "Lahn Khafi (kesalahan tersembunyi seperti kurang tebalnya Isti'la atau ketidaktepatan kadar dengung) mencederai keindahan dan keakuratan tartil yang diajarkan Rasulullah SAW."
+                },
+                {
+                    type: 'mcq',
+                    question: "Ketika huruf Mim (م) dan Nun (ن) dibaca Ikhfa, manakah makhraj dan sifat yang dominan beroperasi?",
+                    options: [
+                        "A. Suara berpindah dominan ke rongga Al-Khaisyum (Ghunnah) sementara makhraj lisan/syafatain disamar-siapkan menuju huruf berikutnya.",
+                        "B. Suara keluar murni dari Al-Jauf.",
+                        "C. Makhraj Al-Halq berkunci rapat.",
+                        "D. Sifat Qalqalah diaktifkan."
+                    ],
+                    correct: 0,
+                    explanation: "Pada saat Ikhfa, makhraj asal lisan/bibir dilepaskan dari tekanan kuat, dan suara dialirkan menuju Al-Khaisyum menghasilkan dengung ikhfa."
+                },
+                {
+                    type: 'mcq',
+                    question: "Manakah di antara pasangan huruf berikut yang tergolong Mutamatsilain (sama makhraj dan sama sifatnya)?",
+                    options: [
+                        "A. Ba (ب) bertemu Ba (ب)",
+                        "B. Ba (ب) bertemu Mim (م)",
+                        "C. Ta (ت) bertemu Tha (ط)",
+                        "D. Dal (د) bertemu Tza (ذ)"
+                    ],
+                    correct: 0,
+                    explanation: "Mutamatsilain adalah pertemuan dua huruf yang identik sama persis makhraj dan sifatnya."
+                },
+                {
+                    type: 'mcq',
+                    question: "Perhatikan kata (مُسْتَقِيمَ). Mengapa huruf Ta (ت) di sini tidak dibaca tebal walau berdampingan dengan Qaf (ق)?",
+                    options: [
+                        "A. Karena Ta adalah huruf Istifal yang wajib dibaca Tarqiq (tipis) dalam kondisi apa pun.",
+                        "B. Karena Ta di sini berharakat Kasrah.",
+                        "C. Karena Qaf terpengaruh oleh Mim.",
+                        "D. Karena Ta adalah huruf Ithbaq."
+                    ],
+                    correct: 0,
+                    explanation: "Huruf Istifal (seperti Ta) harus tetap dijaga ketipisannya (tarqiq) dan tidak boleh terpengaruh menjadi tebal akibat tetangganya huruf Isti'la (Qaf)."
+                },
+                {
+                    type: 'mcq',
+                    question: "Ujian Akhir Penalaran: Bagaimanakah ringkasan prinsip dasar Tahsin Makhraj dan Sifat bagi seorang qari'ah menurut Imam Ibn Al-Jazari dalam matannya?",
+                    options: [
+                        "A. 'Tidak ada pemisah antara seseorang dengan meninggalkan kesalahan tilawah melainkan latihan terus menerus dengan lidahnya' (Laisa bainahu wa baina tarkihi illa riyadhatun imri'in bifakkihi).",
+                        "B. 'Cukup menghafal istilah tanpa perlu menyimak bacaan guru.'",
+                        "C. 'Membaca cepat lebih utama daripada ketelitian tajwid.'",
+                        "D. 'Makhraj huruf hanya penting untuk orang Arab.'"
+                    ],
+                    correct: 0,
+                    explanation: "Kutipan mashur Matan Al-Jazariyyah menekankan riyadhah (latihan dan talaqqi berulang) di hadapan guru untuk melatih kelenturan organ makhraj dan sifat."
+                }
+            ]
+        };
+
+        /* ==========================================================================
+           CORE GAME CONTROL FUNCTIONS
+           ========================================================================== */
+
+        // Initialize on Load
+        window.onload = function() {
+            loadSavedProgress();
+        };
+
+        function loadSavedProgress() {
+            const saved = localStorage.getItem('misi_tahsin_bayyinah_progress');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    gameState = { ...gameState, ...parsed };
+                    if (gameState.playerName) {
+                        document.getElementById('player-name').value = gameState.playerName;
+                        document.getElementById('player-class').value = gameState.playerClass;
+                    }
+                } catch(e) {
+                    console.error("Failed to load progress:", e);
+                }
+            }
+        }
+
+        function saveProgress() {
+            localStorage.setItem('misi_tahsin_bayyinah_progress', JSON.stringify(gameState));
+        }
+
+        function startGame(e) {
+            e.preventDefault();
+            const name = document.getElementById('player-name').value.trim();
+            const cls = document.getElementById('player-class').value;
+
+            if (!name || !cls) {
+                alert("Harap isi Nama Lengkap dan Pilih Kelas terlebih dahulu!");
+                return;
+            }
+
+            gameState.playerName = name;
+            gameState.playerClass = cls;
+            saveProgress();
+
+            // Transition to Map Screen
+            document.getElementById('screen-welcome').classList.add('hidden');
+            document.getElementById('screen-map').classList.remove('hidden');
+
+            updateMapUI();
+        }
+
+        function updateMapUI() {
+            document.getElementById('map-player-name').innerText = gameState.playerName;
+            document.getElementById('map-player-class').innerText = "Kelas: " + gameState.playerClass;
+
+            let totalScoreSum = 0;
+            for (let i = 1; i <= 5; i++) {
+                totalScoreSum += (gameState.levelScores[i] || 0);
+            }
+            document.getElementById('map-total-score').innerText = totalScoreSum;
+
+            // Update Gate States
+            for (let i = 1; i <= 5; i++) {
+                const card = document.getElementById(`gate-card-${i}`);
+                const btn = document.getElementById(`gate-btn-${i}`);
+                const status = document.getElementById(`gate-status-${i}`);
+
+                if (i <= gameState.unlockedLevel) {
+                    card.className = "relative rounded-xl p-4 border-2 border-gold-accent bg-white shadow-md transition duration-300 hover:shadow-lg flex flex-col justify-between h-56";
+                    btn.disabled = false;
+                    btn.className = "w-full pink-gradient-btn py-1.5 rounded-lg text-xs font-bold shadow cursor-pointer";
+                    btn.innerText = (gameState.levelScores[i] > 0) ? "Mainkan Lagi" : "Masuk Gerbang";
+
+                    if (gameState.levelScores[i] >= 75) {
+                        status.className = "text-xs font-bold py-1 px-2 rounded-md bg-emerald-100 text-emerald-800";
+                        status.innerHTML = `<i class="fa-solid fa-check"></i> Lulus (${gameState.levelScores[i]}%)`;
+                    } else if (gameState.levelScores[i] > 0) {
+                        status.className = "text-xs font-bold py-1 px-2 rounded-md bg-amber-100 text-amber-800";
+                        status.innerHTML = `<i class="fa-solid fa-rotate-left"></i> Coba Lagi (${gameState.levelScores[i]}%)`;
+                    } else {
+                        status.className = "text-xs font-bold py-1 px-2 rounded-md bg-blue-100 text-blue-800";
+                        status.innerText = "Terbuka";
+                    }
+                } else {
+                    card.className = "relative rounded-xl p-4 border border-gray-300 bg-gray-50 opacity-75 shadow-sm flex flex-col justify-between h-56";
+                    btn.disabled = true;
+                    btn.className = "w-full bg-gray-300 text-gray-500 py-1.5 rounded-lg text-xs font-bold cursor-not-allowed";
+                    btn.innerText = "Terkunci";
+                    status.className = "text-xs font-bold py-1 px-2 rounded-md bg-gray-200 text-gray-600";
+                    status.innerHTML = `<i class="fa-solid fa-lock text-[10px]"></i> Terkunci`;
+                }
+            }
+        }
+
+        function startLevel(lvl) {
+            gameState.currentLevel = lvl;
+            currentQuestionIdx = 0;
+            currentLevelQuestions = [...QUESTION_BANK[lvl]];
+            gameState.hintsLeft = 3;
+            document.getElementById('hint-count').innerText = gameState.hintsLeft;
+
+            // Setup Timer
+            timeLeft = (lvl === 5) ? 360 : 240; // 6 mins for final, 4 mins for others
+            startTimer();
+
+            // UI Adjustments
+            document.getElementById('screen-map').classList.add('hidden');
+            document.getElementById('screen-game').classList.remove('hidden');
+
+            const subtitles = {
+                1: "Gerbang I: Makharijul Huruf",
+                2: "Gerbang II: Sifat yang Memiliki Lawan",
+                3: "Gerbang III: Sifat Tanpa Lawan",
+                4: "Gerbang IV: Sifat Khafa & Analisis Bacaan",
+                5: "Gerbang V: Master Tahsin Integratif"
+            };
+            document.getElementById('game-level-title').innerText = `GERBANG ${lvl}`;
+            document.getElementById('game-level-subtitle').innerText = subtitles[lvl];
+
+            renderQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Waktu habis untuk gerbang ini!");
+                    finishLevel();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            document.getElementById('timer-display').innerText = `${m}:${s}`;
+        }
+
+        function renderQuestion() {
+            isAnswerLocked = false;
+            document.getElementById('explanation-box').classList.add('hidden');
+            const actionBtn = document.getElementById('action-btn');
+            actionBtn.innerHTML = `<span>Kunci Jawaban</span> <i class="fa-solid fa-lock"></i>`;
+            actionBtn.onclick = submitAnswer;
+
+            const totalQ = currentLevelQuestions.length;
+            document.getElementById('question-progress-text').innerText = `${currentQuestionIdx + 1}/${totalQ}`;
+
+            const q = currentLevelQuestions[currentQuestionIdx];
+            const container = document.getElementById('question-container');
+            container.innerHTML = '';
+
+            // Render based on type
+            if (q.type === 'mcq') {
+                renderMCQ(q, container);
+            } else if (q.type === 'matching') {
+                renderMatching(q, container);
+            } else if (q.type === 'order') {
+                renderOrdering(q, container);
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           QUESTION RENDERERS: MCQ, MATCHING, ORDERING
+           -------------------------------------------------------------------------- */
+        function renderMCQ(q, container) {
+            let html = `
+                <div class="mb-4">
+                    <span class="inline-block bg-deep-rose text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full mb-2">SOAL ANALISIS PILIHAN GANDA</span>
+                    <h3 class="text-sm md:text-base font-bold text-dark-plum whitespace-pre-line leading-relaxed">${q.question}</h3>
+                </div>
+                <div class="space-y-2.5">
+            `;
+
+            q.options.forEach((opt, idx) => {
+                html += `
+                    <label class="mcq-option flex items-start gap-3 p-3 rounded-xl border border-gray-200 hover:border-dusty-pink hover:bg-blush-pink/30 cursor-pointer transition">
+                        <input type="radio" name="mcq-choice" value="${idx}" class="mt-1 text-deep-rose focus:ring-deep-rose">
+                        <span class="text-xs md:text-sm text-gray-800 leading-snug">${opt}</span>
+                    </label>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function renderMatching(q, container) {
+            currentMatchPairs = {};
+            // Shuffle right column
+            let rightItems = q.pairs.map((p, i) => ({ text: p.right, origIdx: i }));
+            rightItems.sort(() => Math.random() - 0.5);
+
+            let html = `
+                <div class="mb-4">
+                    <span class="inline-block bg-gold-accent text-dark-plum text-[10px] font-extrabold px-2.5 py-0.5 rounded-full mb-2">AKTIVITAS MENJODOHKAN KARTU</span>
+                    <h3 class="text-sm md:text-base font-bold text-dark-plum leading-relaxed">${q.question}</h3>
+                    <p class="text-[11px] text-gray-500 italic mt-0.5">Pilih/Klik item sebelah kiri, lalu pilih item sebelah kanan yang sesuai.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-deep-rose uppercase tracking-wider">Kategori / Istilah (Kiri)</h4>
+            `;
+
+            q.pairs.forEach((p, idx) => {
+                html += `
+                    <div id="match-left-${idx}" onclick="selectTouchLeft(${idx})" class="left-match-card p-3 rounded-xl border-2 border-dusty-pink bg-blush-pink/40 text-xs md:text-sm font-bold text-dark-plum cursor-pointer hover:bg-blush-pink transition">
+                        ${p.left}
+                        <div id="match-target-${idx}" class="text-[11px] font-normal text-deep-rose mt-1 italic">
+                            [ Belum dijodohkan ]
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-gold-accent uppercase tracking-wider">Pasangan Jawaban (Kanan)</h4>
+            `;
+
+            rightItems.forEach((r, idx) => {
+                html += `
+                    <div id="match-right-${idx}" onclick="selectTouchRight('${r.text.replace(/'/g, "\\'")}', ${idx})" class="right-match-card p-3 rounded-xl border border-gray-300 bg-white text-xs md:text-sm text-gray-800 cursor-pointer hover:border-gold-accent transition">
+                        ${r.text}
+                    </div>
+                `;
+            });
+
+            html += `</div></div>`;
+            container.innerHTML = html;
+        }
+
+        let selectedLeftIdx = null;
+
+        function selectTouchLeft(leftIdx) {
+            if (isAnswerLocked) return;
+            selectedLeftIdx = leftIdx;
+
+            // Highlight left
+            document.querySelectorAll('.left-match-card').forEach((el, i) => {
+                if (i === leftIdx) el.classList.add('ring-2', 'ring-deep-rose', 'bg-blush-pink');
+                else el.classList.remove('ring-2', 'ring-deep-rose', 'bg-blush-pink');
+            });
+        }
+
+        function selectTouchRight(rightText, rightIdx) {
+            if (isAnswerLocked) return;
+            if (selectedLeftIdx === null) {
+                alert("Pilih terlebih dahulu item sebelah KIRI yang ingin dijodohkan!");
+                return;
+            }
+
+            currentMatchPairs[selectedLeftIdx] = rightText;
+            document.getElementById(`match-target-${selectedLeftIdx}`).innerText = "➔ " + rightText;
+            document.getElementById(`match-target-${selectedLeftIdx}`).className = "text-[11px] font-bold text-emerald-700 mt-1";
+
+            // Unhighlight left
+            document.querySelectorAll('.left-match-card').forEach(el => el.classList.remove('ring-2', 'ring-deep-rose'));
+            selectedLeftIdx = null;
+        }
+
+        function renderOrdering(q, container) {
+            // Shuffle items
+            let shuffled = q.items.map((it, idx) => ({ text: it, origIdx: idx }));
+            shuffled.sort(() => Math.random() - 0.5);
+            currentCardOrder = shuffled.map(s => s.origIdx);
+
+            let html = `
+                <div class="mb-4">
+                    <span class="inline-block bg-purple-700 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full mb-2">AKTIVITAS MENYUSUN URUTAN KARTU</span>
+                    <h3 class="text-sm md:text-base font-bold text-dark-plum leading-relaxed">${q.question}</h3>
+                    <p class="text-[11px] text-gray-500 italic mt-0.5">Gunakan tombol Panah (▲ / ▼) untuk menggeser dan menyusun urutan yang benar dari atas ke bawah.</p>
+                </div>
+                <div id="ordering-list-container" class="space-y-2 max-w-2xl mx-auto">
+            `;
+
+            shuffled.forEach((item, pos) => {
+                html += `
+                    <div id="order-card-${pos}" class="p-3 rounded-xl border border-dusty-pink bg-white shadow-sm flex items-center justify-between gap-3">
+                        <span class="text-xs md:text-sm font-semibold text-dark-plum flex-1">${item.text}</span>
+                        <div class="flex flex-col gap-1">
+                            <button onclick="moveCardUp(${pos})" class="bg-gray-100 hover:bg-dusty-pink text-dark-plum text-xs px-2 py-1 rounded border">▲</button>
+                            <button onclick="moveCardDown(${pos})" class="bg-gray-100 hover:bg-dusty-pink text-dark-plum text-xs px-2 py-1 rounded border">▼</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function moveCardUp(pos) {
+            if (isAnswerLocked || pos === 0) return;
+            const temp = currentCardOrder[pos];
+            currentCardOrder[pos] = currentCardOrder[pos - 1];
+            currentCardOrder[pos - 1] = temp;
+            reRenderOrderList();
+        }
+
+        function moveCardDown(pos) {
+            if (isAnswerLocked || pos === currentCardOrder.length - 1) return;
+            const temp = currentCardOrder[pos];
+            currentCardOrder[pos] = currentCardOrder[pos + 1];
+            currentCardOrder[pos + 1] = temp;
+            reRenderOrderList();
+        }
+
+        function reRenderOrderList() {
+            const q = currentLevelQuestions[currentQuestionIdx];
+            const listContainer = document.getElementById('ordering-list-container');
+            let html = '';
+            currentCardOrder.forEach((origIdx, pos) => {
+                html += `
+                    <div id="order-card-${pos}" class="p-3 rounded-xl border border-dusty-pink bg-white shadow-sm flex items-center justify-between gap-3">
+                        <span class="text-xs md:text-sm font-semibold text-dark-plum flex-1">${q.items[origIdx]}</span>
+                        <div class="flex flex-col gap-1">
+                            <button onclick="moveCardUp(${pos})" class="bg-gray-100 hover:bg-dusty-pink text-dark-plum text-xs px-2 py-1 rounded border">▲</button>
+                            <button onclick="moveCardDown(${pos})" class="bg-gray-100 hover:bg-dusty-pink text-dark-plum text-xs px-2 py-1 rounded border">▼</button>
+                        </div>
+                    </div>
+                `;
+            });
+            listContainer.innerHTML = html;
+        }
+
+        /* --------------------------------------------------------------------------
+           ANSWER VALIDATION & SUBMISSION
+           -------------------------------------------------------------------------- */
+        function submitAnswer() {
+            if (isAnswerLocked) {
+                // If already locked, click means "Next Question"
+                currentQuestionIdx++;
+                if (currentQuestionIdx < currentLevelQuestions.length) {
+                    renderQuestion();
+                } else {
+                    finishLevel();
+                }
+                return;
+            }
+
+            const q = currentLevelQuestions[currentQuestionIdx];
+            let isCorrect = false;
+
+            if (q.type === 'mcq') {
+                const selected = document.querySelector('input[name="mcq-choice"]:checked');
+                if (!selected) {
+                    alert("Harap pilih salah satu jawaban!");
+                    return;
+                }
+                const choiceVal = parseInt(selected.value);
+                isCorrect = (choiceVal === q.correct);
+                q.userScore = isCorrect ? (q.usedHint ? 60 : 100) : 0;
+            } 
+            else if (q.type === 'matching') {
+                let correctPairsCount = 0;
+                q.pairs.forEach((p, idx) => {
+                    if (currentMatchPairs[idx] === p.right) {
+                        correctPairsCount++;
+                    }
+                });
+                isCorrect = (correctPairsCount === q.pairs.length);
+                q.userScore = Math.round((correctPairsCount / q.pairs.length) * 100);
+            } 
+            else if (q.type === 'order') {
+                let matchCount = 0;
+                currentCardOrder.forEach((origIdx, pos) => {
+                    if (origIdx === q.correctOrder[pos]) matchCount++;
+                });
+                isCorrect = (matchCount === q.correctOrder.length);
+                q.userScore = Math.round((matchCount / q.correctOrder.length) * 100);
+            }
+
+            isAnswerLocked = true;
+            q.isCorrect = isCorrect;
+
+            // Show Feedback & Explanation
+            const expBox = document.getElementById('explanation-box');
+            const expText = document.getElementById('explanation-text');
+            expBox.classList.remove('hidden');
+
+            const ummuText = document.getElementById('ummu-guidance-text');
+
+            if (isCorrect) {
+                expBox.className = "mb-4 bg-emerald-50 border-2 border-emerald-400 rounded-xl p-4 text-xs md:text-sm text-emerald-900 shadow-sm";
+                expText.innerHTML = `<strong>Masya Allah, Tepat Sekali!</strong><br>${q.explanation}`;
+                ummuText.innerText = "“Masya Allah, jawaban anti tepat! Baarakallahu fiiki. Lanjutkan dengan penuh ketelitian.”";
+            } else {
+                expBox.className = "mb-4 bg-rose-50 border-2 border-rose-400 rounded-xl p-4 text-xs md:text-sm text-rose-900 shadow-sm";
+                expText.innerHTML = `<strong>Belum Tepat.</strong><br>${q.explanation}`;
+                ummuText.innerText = "“Belum tepat, anti. Jangan terburu-buru menyimpulkan. Periksa kembali definisi, pasangan sifat, dan tempat keluarnya huruf.”";
+            }
+
+            // Change button to Next
+            const actionBtn = document.getElementById('action-btn');
+            actionBtn.innerHTML = `<span>Lanjut Soal Berikutnya</span> <i class="fa-solid fa-arrow-right"></i>`;
+            actionBtn.onclick = submitAnswer; // Next trigger
+        }
+
+        function useHint() {
+            if (isAnswerLocked) return;
+            if (gameState.hintsLeft <= 0) {
+                alert("Kesempatan petunjuk pada gerbang ini sudah habis!");
+                return;
+            }
+
+            const q = currentLevelQuestions[currentQuestionIdx];
+            q.usedHint = true;
+            gameState.hintsLeft--;
+            document.getElementById('hint-count').innerText = gameState.hintsLeft;
+
+            alert(`PETUNJUK UMMU WIDAAD:\n"${q.explanation.substring(0, 120)}..."`);
+        }
+
+        /* --------------------------------------------------------------------------
+           LEVEL COMPLETION & EVALUATION
+           -------------------------------------------------------------------------- */
+        function finishLevel() {
+            clearInterval(timerInterval);
+
+            let totalScore = 0;
+            let correctCount = 0;
+            const totalQ = currentLevelQuestions.length;
+
+            currentLevelQuestions.forEach(q => {
+                totalScore += (q.userScore || 0);
+                if (q.isCorrect || q.userScore >= 75) correctCount++;
+            });
+
+            const avgScore = Math.round(totalScore / totalQ);
+            const timeSpentSec = ((gameState.currentLevel === 5 ? 360 : 240) - timeLeft);
+            const minutesSpent = Math.floor(timeSpentSec / 60).toString().padStart(2, '0');
+            const secondsSpent = (timeSpentSec % 60).toString().padStart(2, '0');
+
+            gameState.levelScores[gameState.currentLevel] = avgScore;
+            gameState.levelAccuracy[gameState.currentLevel] = Math.round((correctCount / totalQ) * 100);
+            gameState.levelTimes[gameState.currentLevel] = `${minutesSpent}:${secondsSpent}`;
+
+            const isPassed = avgScore >= 75;
+
+            if (isPassed && gameState.currentLevel === gameState.unlockedLevel && gameState.unlockedLevel < 5) {
+                gameState.unlockedLevel++;
+            }
+
+            saveProgress();
+
+            // Render Evaluation Modal
+            document.getElementById('res-score-text').innerText = `${avgScore}%`;
+            document.getElementById('res-correct-text').innerText = `${correctCount} / ${totalQ}`;
+            document.getElementById('res-time-text').innerText = `${minutesSpent}:${secondsSpent}`;
+
+            const iconContainer = document.getElementById('result-icon-container');
+            const badge = document.getElementById('res-status-badge');
+            const msg = document.getElementById('res-ummu-message');
+
+            if (isPassed) {
+                iconContainer.className = "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-3xl mb-3 shadow-md bg-emerald-100 text-emerald-600 border-2 border-emerald-400";
+                iconContainer.innerHTML = `<i class="fa-solid fa-trophy"></i>`;
+                badge.className = "inline-block px-2.5 py-1 rounded text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+                badge.innerText = "LULUS GERBANG";
+                msg.innerText = "“Alhamdulillah! Satu gerbang telah anti taklukkan. Namun, ujian berikutnya akan lebih menantang.”";
+            } else {
+                iconContainer.className = "w-16 h-16 rounded-full mx-auto flex items-center justify-center text-3xl mb-3 shadow-md bg-rose-100 text-rose-600 border-2 border-rose-400";
+                iconContainer.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i>`;
+                badge.className = "inline-block px-2.5 py-1 rounded text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300";
+                badge.innerText = "BELUM LULUS (MIN. 75%)";
+                msg.innerText = "“Belum tepat, anti. Mulangi gerbang ini dengan membaca kembali ringkasan materi. Jangan berkecil hati!”";
+            }
+
+            document.getElementById('modal-result').classList.remove('hidden');
+        }
+
+        function retryLevel() {
+            document.getElementById('modal-result').classList.add('hidden');
+            startLevel(gameState.currentLevel);
+        }
+
+        function proceedAfterLevel() {
+            document.getElementById('modal-result').classList.add('hidden');
+            document.getElementById('screen-game').classList.add('hidden');
+
+            if (gameState.currentLevel === 5 && gameState.levelScores[5] >= 75) {
+                // Generate Certificate
+                showCertificate();
+            } else {
+                document.getElementById('screen-map').classList.remove('hidden');
+                updateMapUI();
+            }
+        }
+
+        /* --------------------------------------------------------------------------
+           CERTIFICATE & FINAL RESULTS
+           -------------------------------------------------------------------------- */
+        function showCertificate() {
+            document.getElementById('screen-map').classList.add('hidden');
+            document.getElementById('screen-game').classList.add('hidden');
+            document.getElementById('screen-certificate').classList.remove('hidden');
+
+            document.getElementById('cert-player-name').innerText = gameState.playerName;
+            document.getElementById('cert-player-class').innerText = "Kelas: " + gameState.playerClass;
+
+            let totalScoreSum = 0;
+            for (let i = 1; i <= 5; i++) {
+                totalScoreSum += (gameState.levelScores[i] || 0);
+            }
+
+            const overallAcc = Math.round(totalScoreSum / 5);
+            document.getElementById('cert-total-score').innerText = `${totalScoreSum} / 500`;
+            document.getElementById('cert-accuracy').innerText = `${overallAcc}%`;
+
+            let titleStr = "Pejuang Tahsin";
+            let titleClass = "bg-gray-100 text-gray-800 border-gray-300";
+
+            if (overallAcc >= 95) {
+                titleStr = "Mutiara Tahsin";
+                titleClass = "bg-amber-100 text-amber-900 border-amber-400";
+            } else if (overallAcc >= 85) {
+                titleStr = "Penjaga Ketelitian";
+                titleClass = "bg-emerald-100 text-emerald-900 border-emerald-400";
+            } else if (overallAcc >= 75) {
+                titleStr = "Penuntut Ilmu Tangguh";
+                titleClass = "bg-blue-100 text-blue-900 border-blue-400";
+            }
+
+            const titleEl = document.getElementById('cert-title');
+            titleEl.innerText = titleStr;
+            titleEl.className = `text-xs font-bold px-2 py-1 rounded inline-block mt-0.5 border ${titleClass}`;
+
+            const today = new Date();
+            document.getElementById('cert-date').innerText = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+        }
+
+        function showReviewModal() {
+            const container = document.getElementById('review-content-list');
+            let html = '';
+
+            for (let lvl = 1; lvl <= 5; lvl++) {
+                html += `<div class="font-bold text-deep-rose text-sm border-b pb-1 mt-3">--- GERBANG ${lvl} ---</div>`;
+                QUESTION_BANK[lvl].forEach((q, idx) => {
+                    html += `
+                        <div class="bg-gray-50 p-2.5 rounded-lg border border-gray-200">
+                            <p class="font-bold text-dark-plum">${idx + 1}. ${q.question}</p>
+                            <p class="text-xs text-emerald-800 mt-1"><strong>Pembahasan Tajwid:</strong> ${q.explanation}</p>
+                        </div>
+                    `;
+                });
+            }
+
+            container.innerHTML = html;
+            document.getElementById('modal-review').classList.remove('hidden');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('modal-review').classList.add('hidden');
+        }
+
+        function confirmExitLevel() {
+            if (confirm("Apakah anti yakin ingin keluar ke Peta Ekspedisi? Progres soal gerbang saat ini tidak akan disimpan.")) {
+                clearInterval(timerInterval);
+                document.getElementById('screen-game').classList.add('hidden');
+                document.getElementById('screen-map').classList.remove('hidden');
+                updateMapUI();
+            }
+        }
+
+        function confirmRestart() {
+            if (confirm("Apakah anti yakin ingin mereset seluruh progres permainan? Data nama dan skor akan dihapus.")) {
+                localStorage.removeItem('misi_tahsin_bayyinah_progress');
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
